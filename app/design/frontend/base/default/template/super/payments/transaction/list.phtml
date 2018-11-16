@@ -14,7 +14,7 @@ $transactions = $this->getTransactions();
             <div class="row">
                 <div class="col-lg-9">
                     <?php echo $this->__('Transakcja nr %s', $transaction->getTxnId()); ?>
-                    <small><?php echo $this->__('utworzono %s', $transaction->getCreatedAt()); ?></small>
+                    <small><?php echo $this->__('utworzono %s', Mage::helper('core')->formatDate($transaction->getCreatedAt(), 'medium', true)); ?></small>
                 </div>
                 <div class="col-lg-3 text-right">
                     <?php echo $this->getTransactionStatusLabel($transaction); ?>
