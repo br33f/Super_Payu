@@ -25,6 +25,7 @@ class Super_Payments_Model_Status
         $payment->getTransaction($payment->getLastTransId())->setIsClosed(true)->save();
 
         $payment->getOrder()
+            ->sendOrderUpdateEmail(true, $comment)
             ->addStatusHistoryComment($comment)
             ->setIsCustomerNotified(true)
             ->save();
@@ -71,6 +72,7 @@ class Super_Payments_Model_Status
         $payment->getTransaction($payment->getLastTransId())->setIsClosed(true)->save();
 
         $payment->getOrder()
+            ->sendOrderUpdateEmail(true, $comment)
             ->addStatusHistoryComment($comment)
             ->setIsCustomerNotified(true)
             ->save();
@@ -95,6 +97,7 @@ class Super_Payments_Model_Status
 
         $payment->getOrder()
             ->setState(Mage_Sales_Model_Order::STATE_NEW, 'paid', $comment, true)
+            ->sendOrderUpdateEmail(true, $comment)
             ->save();
     }
 }
