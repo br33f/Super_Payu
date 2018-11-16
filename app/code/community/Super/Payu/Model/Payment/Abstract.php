@@ -85,14 +85,20 @@ abstract class Super_Payu_Model_Payment_Abstract
         return Mage::helper('super_payments/transaction')->generateUrlWithOrderKey('superpayu/transaction/cancel', $orderId);
     }
 
+    /**
+     * @param Mage_Sales_Model_Quote|null $quote
+     * @return bool
+     */
     public function isAvailable($quote = null)
     {
         $isAvailable = parent::isAvailable($quote);
 
-        // Order total is in payment method amount range
-        $total = $quote->getBaseSubtotal() + $quote->getShippingAddress()->getBaseShippingAmount();
-        $isAvailable &= $total >= $this->getPaymethodsHelper()->getPriceLowerLimit();
-        $isAvailable &= $total <= $this->getPaymethodsHelper()->getPriceUpperLimit();
+        if (!empty($quote)) {
+            // Order total is in payment method amount range
+            $total = $quote->getBaseSubtotal() + $quote->getShippingAddress()->getBaseShippingAmount();
+            $isAvailable &= $total >= $this->getPaymethodsHelper()->getPriceLowerLimit();
+            $isAvailable &= $total <= $this->getPaymethodsHelper()->getPriceUpperLimit();
+        }
 
         return $isAvailable;
     }
