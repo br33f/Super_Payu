@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Super_Payments>
+            <version>0.1.0</version>
+        </Super_Payments>
+    </modules>
+
+    <global>
+        <models>
+            <super_payments>
+                <class>Super_Payments_Model</class>
+            </super_payments>
+        </models>
+        <blocks>
+            <super_payments>
+                <class>Super_Payments_Block</class>
+            </super_payments>
+        </blocks>
+        <helpers>
+            <super_payments>
+                <class>Super_Payments_Helper</class>
+            </super_payments>
+        </helpers>
+    </global>
+
+    <default>
+        <payment>
+            <super_payments>
+                <password>password123</password>
+            </super_payments>
+        </payment>
+    </default>
+
+    <frontend>
+        <layout>
+            <updates>
+                <super_payments>
+                    <file>super/payments.xml</file>
+                </super_payments>
+            </updates>
+        </layout>
+        <routers>
+            <super_payments>
+                <use>standard</use>
+                <args>
+                    <module>Super_Payments</module>
+                    <frontName>superpayments</frontName>
+                </args>
+            </super_payments>
+        </routers>
+    </frontend>
+</config>

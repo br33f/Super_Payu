@@ -1,0 +1,26 @@
+<p></p>
+<h3><?php echo $this->getTitle(); ?></h3>
+<?php
+/** @var Mage_Sales_Model_Order_Payment_Transaction[] $transactions */
+$transactions = $this->getTransactions();
+?>
+<ul class="list-group transaction-list">
+    <?php if (!$transactions->count()) { ?>
+        <li class="list-group-item"><?php echo $this->__('Brak wcześniejszych transakcji'); ?></li>
+    <?php }?>
+    <?php $itemClass = 'odd'; ?>
+    <?php foreach ($transactions as $transaction) { ?>
+        <li class="list-group-item <?php echo $itemClass; ?>">
+            <div class="row">
+                <div class="col-lg-9">
+                    <?php echo $this->__('Transakcja nr %s', $transaction->getTxnId()); ?>
+                    <small><?php echo $this->__('utworzono %s', $transaction->getCreatedAt()); ?></small>
+                </div>
+                <div class="col-lg-3 text-right">
+                    <?php echo $this->getTransactionStatusLabel($transaction); ?>
+                </div>
+            </div>
+        </li>
+        <?php $itemClass = ($itemClass == 'even') ? 'odd' : 'even'; ?>
+    <?php } ?>
+</ul>

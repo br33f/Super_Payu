@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <super_payments translate="label" module="paygate">
+                    <label>Super Payments</label>
+                    <sort_order>9998</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <password translate="label,comment">
+                            <label>Hasło zabezpieczeń</label>
+                            <comment>Wprowadź dowolne hasło służące do zabezpieczenia dostępu do transakcji zamówień
+                                złożonych jako gość. Uwaga: Późniejsza zmiana hasła spowoduje utrate dostępu do
+                                transakcji utworzonych przed zmianą
+                            </comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </password>
+                    </fields>
+                </super_payments>
+            </groups>
+        </payment>
+    </sections>
+</config>

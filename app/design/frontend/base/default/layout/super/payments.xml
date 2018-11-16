@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <super_payments_transaction_view translate="label">
+        <label>Transakcje zamówienia</label>
+        <update handle="customer_account"/>
+        <reference name="head">
+            <action method="addJs">
+                <script>bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/super/payments/payments.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/bootstrap.min.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="my.account.wrapper">
+            <block type="super_payments/transaction_view" name="super_payments.transaction_view"
+                   template="super/payments/transaction/view.phtml">
+                <block type="super_payments/transaction_form" name="super_payments.transaction_form"
+                       template="super/payments/transaction/form.phtml"></block>
+                <block type="super_payments/transaction_list" name="super_payments.transaction_list"
+                       template="super/payments/transaction/list.phtml"></block>
+            </block>
+        </reference>
+    </super_payments_transaction_view>
+
+    <super_payments_payment_continue>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>bootstrap.min.js</script>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>js/super/payments_continue.js</script>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/super/payments/payments.css</stylesheet>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/bootstrap.min.css</stylesheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="super_payments/payment_continue" name="super_payments.payment_continue" template="super/payments/payment/continue.phtml"></block>
+        </reference>
+    </super_payments_payment_continue>
+</layout>

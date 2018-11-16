@@ -1,0 +1,135 @@
+.superPayuLogo {
+    height: 20px;
+    margin-right: 5px;
+}
+
+.super-payments-status {
+    background: #eee;
+    text-align: center;
+    padding: 15px;
+}
+
+.super-payments-status .icon {
+    font-size: 40px;
+}
+
+.super-payments-status .icon.pending {
+    color: #f7ab13;
+}
+
+.super-payments-status .icon.inprogress {
+    color: #f7ab13;
+}
+
+.super-payments-status .icon.paid {
+    color: #7bbd26;
+}
+
+.super-payments-status .title {
+    font-size: 16px;
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+}
+
+.super-payments-form .title {
+    font-size: 14px;
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.btn.btn-cancel {
+    color: #000 !important;
+    background-color: #eee;
+    border-radius: 0;
+}
+
+.btn-cancel:hover {
+    color: #fff !important;
+    background-color: #f7ab13;
+    text-decoration: none !important;
+}
+
+.btn.btn-payment {
+    color: #fff !important;
+    background-color: #7bbd26;
+    border-radius: 0;
+}
+
+.btn-payment:hover {
+    color: #000 !important;
+    background-color: #eee;
+    text-decoration: none !important;
+}
+
+.btn.btn-redirect {
+    color: #000 !important;
+    background-color: #eee;
+    border-radius: 0;
+}
+
+.btn.btn-redirect .glyphicon {
+    margin-right: 8px;
+}
+
+.btn.btn-redirect:hover {
+    text-decoration: none !important;
+    color: #7bbd26 !important;
+}
+
+.transaction-list .list-group-item.even {
+    background-color: #eee;
+}
+
+.transaction-list .list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.transaction-list .list-group-item:last-child {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.super-payments-status-check {
+    background: #eee;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.super-payments-status-check .icon {
+    font-size: 60px;
+}
+
+.super-payments-status-check.payment-waiting .icon {
+    color: #f7ab13;
+
+    animation-name: spin;
+    animation-duration: 3000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(300deg);}
+}
+
+.super-payments-status-check.payment-success .icon {
+    color: #7bbd26;
+}
+
+.super-payments-status-check.payment-fail .icon {
+    color: #f7ab13;
+}
+
+.super-payments-status-check .title {
+    font-size: 18px;
+    font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+}
+
+.super-payments-continue.payment-waiting .payment-waiting, .super-payments-continue.payment-success .payment-success, .super-payments-continue.payment-fail .payment-fail {
+    display: block;
+}
+
+.super-payments-continue .super-payments-form, .super-payments-continue .super-payments-status-check {
+    display: none;
+}

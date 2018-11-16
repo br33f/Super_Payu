@@ -1,0 +1,54 @@
+<div class="page-title">
+    <h1><?php echo $this->getTitle(); ?></h1>
+</div>
+
+<div class="row super-payments-continue payment-waiting">
+    <div class="col-md-4">
+        <div class="super-payments-status-check payment-waiting">
+            <span class="glyphicon glyphicon-refresh icon"></span>
+            <div class="title"><?php echo $this->__('Trwa oczekiwanie na potwierdzenie dokonania płatności ze strony operatora') ?></div>
+        </div>
+        <div class="super-payments-status-check payment-success">
+            <span class="glyphicon glyphicon-ok icon"></span>
+            <div class="title"><?php echo $this->__('Zamówienie opłacone pomyślnie') ?></div>
+        </div>
+        <div class="super-payments-status-check payment-fail">
+            <span class="glyphicon glyphicon-remove icon"></span>
+            <div class="title"><?php echo $this->__('Nieudana próba opłacenia zamówienia') ?></div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="super-payments-form payment-waiting">
+            <p class="title"><?php echo $this->__("Oczekiwanie"); ?></p>
+            <p><b><?php echo $this->__("Identyfikator płatności: %s", $this->getOrder()->getPayment()->getLastTransId()); ?></b></p>
+            <p><?php echo $this->__("Szanowny kliencie, dziękujemy za dokonanie płatności. Aktualnie oczekujemy na potwierdzenie Twojej płatności ze strony operatora. Prosimy o odrobinę cierpliwości."); ?></p>
+            <p><?php echo $this->__("Możesz zamknąć tę stronę, jeśli nie chcesz czekać na potwierdzenie."); ?></p>
+            <p>
+                <a href="<?php echo Mage::helper('super_payments/transaction')->generateListUrl($this->getOrder()->getId()); ?>" class="btn btn-redirect"><span class="glyphicon glyphicon-credit-card"></span><?php echo $this->__('Kliknij, aby wrócić do panelu płatności');?></a>
+                <a href="<?php echo Mage::getUrl(''); ?>" class="btn btn-redirect"><span class="glyphicon glyphicon-home"></span><?php echo $this->__('Kliknij, aby przejść do strony głównej');?></a>
+            </p>
+        </div>
+        <div class="super-payments-form payment-success">
+            <p class="title"><?php echo $this->__("Opłacono"); ?></p>
+            <p><b><?php echo $this->__("Identyfikator płatności: %s", $this->getOrder()->getPayment()->getLastTransId()); ?></b></p>
+            <p><?php echo $this->__("Szanowny kliencie, Twoje zamówienie zostało pomyślnie opłacone."); ?></p>
+            <p>
+                <a href="<?php echo Mage::helper('super_payments/transaction')->generateListUrl($this->getOrder()->getId()); ?>" class="btn btn-redirect"><span class="glyphicon glyphicon-credit-card"></span><?php echo $this->__('Kliknij, aby wrócić do panelu płatności');?></a>
+                <a href="<?php echo Mage::getUrl(''); ?>" class="btn btn-redirect"><span class="glyphicon glyphicon-home"></span><?php echo $this->__('Kliknij, aby przejść do strony głównej');?></a>
+            </p>
+        </div>
+        <div class="super-payments-form payment-fail">
+            <p class="title"><?php echo $this->__("Bład"); ?></p>
+            <p><b><?php echo $this->__("Identyfikator płatności: %s", $this->getOrder()->getPayment()->getLastTransId()); ?></b></p>
+            <p><?php echo $this->__("Wystąpił błąd podczas próby opłacenia zamówienia. Spróbuj dokonać płatności ponownie."); ?></p>
+            <p>
+                    <a href="<?php echo Mage::helper('super_payments/transaction')->generateListUrl($this->getOrder()->getId()); ?>" class="btn btn-redirect"><span class="glyphicon glyphicon-credit-card"></span><?php echo $this->__('Kliknij, aby wrócić do panelu płatności');?></a>
+                    <a href="<?php echo Mage::getUrl(''); ?>" class="btn btn-redirect"><span class="glyphicon glyphicon-home"></span><?php echo $this->__('Kliknij, aby przejść do strony głównej');?></a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var paymentStatusCheckUrl = '<?php echo $this->getPaymentStatusCheckUrl(); ?>';
+</script>

@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="super-payments-status">
+            <span class="glyphicon glyphicon glyphicon-credit-card icon <?php echo $this->getPaymentStatus(); ?>"></span>
+            <?php if ($this->getPaymentStatus() == Super_Payments_Block_Transaction_Form::PENDING_CODE) { ?>
+                <div class="title"><?php echo $this->__('Oczekuje na płatność') ?></div>
+            <?php } else if ($this->getPaymentStatus() == Super_Payments_Block_Transaction_Form::IN_PROGRESS_CODE) { ?>
+                <div class="title"><?php echo $this->__('Płatność w toku') ?></div>
+            <?php } else if ($this->getPaymentStatus() == Super_Payments_Block_Transaction_Form::PAID_CODE) { ?>
+                <div class="title"><?php echo $this->__('Opłacono') ?></div>
+            <?php } else { ?>
+                <div class="title"><?php echo $this->__('Nieznany status') ?></div>
+            <?php } ?>
+
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="super-payments-form">
+            <?php if ($this->getPaymentStatus() == Super_Payments_Block_Transaction_Form::IN_PROGRESS_CODE) { ?>
+                <p class="title"><?php echo $this->__("Płatność dla tego zamówienia jest w toku."); ?></p>
+                <p><?php echo $this->__("Identyfikator płatności: %s", $this->getOrder()->getPayment()->getLastTransId()); ?></p>
+                <a class="btn btn-cancel" href="<?php echo $this->getPaymentCancelUrl(); ?>">
+                    <?php echo $this->__("Jeżeli chcesz anulować aktualnie rozpoczętą płatność, kliknij tutaj"); ?>
+                </a>
+            <?php } else if ($this->getPaymentStatus() == Super_Payments_Block_Transaction_Form::PAID_CODE) { ?>
+                <p class="title"><?php echo $this->__("To zamówienie zostało już opłacone."); ?></p>
+                <p><?php echo $this->__("Identyfikator płatności: %s", $this->getOrder()->getPayment()->getLastTransId()); ?></p>
+            <?php } else { ?>
+                <p class="title"><?php echo $this->__("To zamówienie oczekuje na opłacenie."); ?></p>
+                <a href="<?php echo $this->getPaymentRedirectionUrl(); ?>" class="btn btn-payment">
+                    <?php echo $this->__("Zapłać teraz"); ?>
+                </a>
+            <?php } ?>
+        </div>
+    </div>
+</div>
