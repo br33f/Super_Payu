@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Super_Payu>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Payment/>
+                <Super_Payments/>
+            </depends>
+        </Super_Payu>
+    </modules>
+</config>
