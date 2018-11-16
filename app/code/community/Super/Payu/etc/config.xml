@@ -62,6 +62,7 @@
             <super_payu>
                 <active>1</active>
                 <sandbox>1</sandbox>
+                <order_status>pending_payment</order_status>
                 <title>Super Payu</title>
                 <model>super_payu/payment_standard</model>
             </super_payu>
