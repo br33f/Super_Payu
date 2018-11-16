@@ -46,6 +46,7 @@ abstract class Super_Payu_Model_Payment_Abstract
             }
         } catch (Exception $e) {
             header('X-PHP-Response-Code: 500', true, 500);
+            Mage::log($e->getMessage(), null, 'super_payu.log', true);
             die($e->getMessage());
         }
 

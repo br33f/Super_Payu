@@ -102,6 +102,7 @@ class Super_Payu_Model_Rest_Order
         $body = file_get_contents('php://input');
         $data = trim($body);
 
+        $this->restConfig->initPayuConfiguration();
         return OpenPayU_Order::consumeNotification($data);
     }
 
