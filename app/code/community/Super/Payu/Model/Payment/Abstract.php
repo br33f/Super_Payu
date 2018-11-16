@@ -96,8 +96,11 @@ abstract class Super_Payu_Model_Payment_Abstract
         if (!empty($quote)) {
             // Order total is in payment method amount range
             $total = $quote->getBaseSubtotal() + $quote->getShippingAddress()->getBaseShippingAmount();
-            $isAvailable &= $total >= $this->getPaymethodsHelper()->getPriceLowerLimit();
-            $isAvailable &= $total <= $this->getPaymethodsHelper()->getPriceUpperLimit();
+            $lowerLimit = $this->getPaymethodsHelper()->getPriceLowerLimit();
+            $upperLimit = $this->getPaymethodsHelper()->getPriceUpperLimit();
+
+            $isAvailable &= $total >= $lowerLimit;
+            $isAvailable &= $upperLimit == 0 || $total <= $upperLimit;
         }
 
         return $isAvailable;
