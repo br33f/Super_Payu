@@ -48,6 +48,6 @@ class Super_Payu_Model_Rest_Paymethods
 
     protected function getPayMethodsCacheId()
     {
-        return self::PAY_METHODS_CACHE_ID;
+        return self::PAY_METHODS_CACHE_ID . '_' . Mage::helper('super_payu/config')->getPosId();
     }
 }
