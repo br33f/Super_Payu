@@ -4,5 +4,7 @@
         <a href="<?php echo Mage::helper('super_payments/transaction')->generateOrderViewUrl($this->getOrder()->getId()); ?>" class="btn btn-redirect btn-sm"><span class="glyphicon glyphicon-share"></span><?php echo $this->__('Podgląd zamówienia'); ?></a>
     </h1>
 </div>
-<?php echo $this->getChildHtml('super_payments.transaction_form'); ?>
+<?php if (!$this->isOrderCanceledOrHolded()) {
+    echo $this->getChildHtml('super_payments.transaction_form');
+} ?>
 <?php echo $this->getChildHtml('super_payments.transaction_list'); ?>

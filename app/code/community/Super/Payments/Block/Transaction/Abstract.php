@@ -50,4 +50,19 @@ abstract class Super_Payments_Block_Transaction_Abstract extends Mage_Core_Block
 
         return $paymentModel;
     }
+
+    /**
+     * Method returns true is orders state is holded/canceled
+     *
+     * @return bool
+     */
+    public function isOrderCanceledOrHolded()
+    {
+        $isClosed = false;
+
+        $isClosed |= $this->getOrder()->getState() == Mage_Sales_Model_Order::STATE_CANCELED;
+        $isClosed |= $this->getOrder()->getState() == Mage_Sales_Model_Order::STATE_HOLDED;
+
+        return $isClosed;
+    }
 }
