@@ -52,7 +52,7 @@ class Super_Payu_TransactionController extends Mage_Core_Controller_Front_Action
 
     public function notifyAction()
     {
-        Mage::getModel('super_payu/payment_standard')->handleNotifyRequest();
+        $this->getPaymentModel()->handleNotifyRequest();
     }
 
     protected function getPaymentModel()
