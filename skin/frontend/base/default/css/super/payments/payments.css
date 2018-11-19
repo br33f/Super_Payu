@@ -36,6 +36,11 @@
     text-transform: uppercase;
 }
 
+.btn {
+    white-space: normal !important;
+    max-width: 100%;
+}
+
 .btn.btn-cancel {
     color: #000 !important;
     background-color: #eee;
