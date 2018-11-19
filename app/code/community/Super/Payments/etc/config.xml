@@ -49,5 +49,14 @@
                 </args>
             </super_payments>
         </routers>
+        <translate>
+            <modules>
+                <Super_Payments>
+                    <files>
+                        <default>Super_Payments.csv</default>
+                    </files>
+                </Super_Payments>
+            </modules>
+        </translate>
     </frontend>
 </config>

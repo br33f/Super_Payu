@@ -79,5 +79,14 @@
                 </args>
             </super_payu>
         </routers>
+        <translate>
+            <modules>
+                <Super_Payu>
+                    <files>
+                        <default>Super_Payu.csv</default>
+                    </files>
+                </Super_Payu>
+            </modules>
+        </translate>
     </frontend>
 </config>
