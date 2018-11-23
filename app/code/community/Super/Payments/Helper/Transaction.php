@@ -87,7 +87,6 @@ class Super_Payments_Helper_Transaction extends Mage_Core_Helper_Abstract
 
         $params = array(
             'orderId' => $orderId,
-            '_type' => Mage_Core_Model_Store::URL_TYPE_WEB,
             '_store' => $order->getStoreId()
         );
 
@@ -108,7 +107,6 @@ class Super_Payments_Helper_Transaction extends Mage_Core_Helper_Abstract
 
         if ($order->getCustomerIsGuest()) {
             $params = array(
-                '_type' => Mage_Core_Model_Store::URL_TYPE_WEB,
                 '_store' => $order->getStoreId()
             );
 
@@ -116,7 +114,6 @@ class Super_Payments_Helper_Transaction extends Mage_Core_Helper_Abstract
         } else {
             $params = array(
                 'order_id' => $orderId,
-                '_type' => Mage_Core_Model_Store::URL_TYPE_WEB,
                 '_store' => $order->getStoreId()
             );
 

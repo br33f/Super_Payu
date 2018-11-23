@@ -59,7 +59,6 @@ class Super_Payments_Helper_Payment extends Mage_Core_Helper_Abstract
 
         $params = array(
             'orderId' => $orderId,
-            '_type' => Mage_Core_Model_Store::URL_TYPE_WEB,
             '_store' => $order->getStoreId(),
             'key' => $this->generateKey($orderId)
         );
