@@ -92,7 +92,7 @@ class Super_Payments_Model_Status
             ->setCurrencyCode($payment->getOrder()->getBaseCurrencyCode())
             ->setIsTransactionApproved(true)
             ->setIsTransactionClosed(true)
-            ->registerCaptureNotification($payment->getOrder()->getTotalDue(), true)
+            ->registerCaptureNotification($payment->getOrder()->getBaseTotalDue(), true)
             ->save();
 
         $payment->getOrder()

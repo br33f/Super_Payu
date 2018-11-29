@@ -63,7 +63,7 @@ class Super_Payments_Model_Payment
         $isPaymentInProgress = false;
 
         /** @var Mage_Sales_Model_Order_Payment_Transaction[] $transactions */
-        $transactions = $this->getTransactions($this->getOrder($order));
+        $transactions = $this->getTransactions($order);
         foreach ($transactions as $transaction) {
             $isPaymentInProgress |= !$transaction->getIsClosed();
         }
