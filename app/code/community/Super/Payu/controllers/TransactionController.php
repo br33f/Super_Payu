@@ -13,18 +13,24 @@ class Super_Payu_TransactionController extends Mage_Core_Controller_Front_Action
         $orderId = $this->getRequest()->getParam('orderId');
         $key = $this->getRequest()->getParam('key');
 
-        if (Mage::helper('super_payments/transaction')->isPermitted($orderId, $key)) {
+        try {
+            if (!Mage::helper('super_payments/transaction')->isPermitted($orderId, $key))
+                throw new Super_Payu_Model_PayuException($this->__('Brak dostępu do płatności zamówienia o id: %d', $orderId));
+
             $order = Mage::getModel('sales/order')->load($orderId);
             $result = $this->getPaymentModel()->startPayment($order);
 
             if ($result->getStatus() == 'SUCCESS') {
                 $this->_redirectUrl($result->getResponse()->redirectUri);
             } else {
-                Mage::getSingleton('core/session')->addError($this->__('Wystąpił nieoczekiwany błąd. Spróbuj ponownie lub skontaktuj się z administratorem.'));
-                $this->_redirect('customer/account/');
+                throw new Exception();
             }
-        } else {
-            Mage::getSingleton('core/session')->addError($this->__('Brak dostępu do płatności zamówienia o id: %d', $orderId));
+        } catch (Super_Payu_Model_PayuException $e) {
+            Mage::getSingleton('core/session')->addError($e->getMessage());
+            $this->_redirectUrl($e->getRedirectUrl());
+        }
+        catch (Exception $e) {
+            Mage::getSingleton('core/session')->addError($this->__('Wystąpił nieoczekiwany błąd. Spróbuj ponownie lub skontaktuj się z administratorem.'));
             $this->_redirect('customer/account/');
         }
     }
@@ -34,18 +40,24 @@ class Super_Payu_TransactionController extends Mage_Core_Controller_Front_Action
         $orderId = $this->getRequest()->getParam('orderId');
         $key = $this->getRequest()->getParam('key');
 
-        if (Mage::helper('super_payments/transaction')->isPermitted($orderId, $key)) {
+        try {
+            if (!Mage::helper('super_payments/transaction')->isPermitted($orderId, $key))
+                throw new Super_Payu_Model_PayuException($this->__('Brak dostępu do płatności zamówienia o id: %d', $orderId));
+
             $order = Mage::getModel('sales/order')->load($orderId);
             $result = $this->getPaymentModel()->cancelPayment($order);
 
             if ($result->getStatus() == 'SUCCESS') {
                 $this->_redirectReferer();
             } else {
-                Mage::getSingleton('core/session')->addError($this->__('Wystąpił nieoczekiwany błąd. Spróbuj ponownie lub skontaktuj się z administratorem.'));
-                $this->_redirectReferer('customer/account/');
+                throw new Exception();
             }
-        } else {
-            Mage::getSingleton('core/session')->addError($this->__('Brak dostępu do płatności zamówienia o id: %d', $orderId));
+        } catch (Super_Payu_Model_PayuException $e) {
+            Mage::getSingleton('core/session')->addError($e->getMessage());
+            $this->_redirectUrl($e->getRedirectUrl());
+        }
+        catch (Exception $e) {
+            Mage::getSingleton('core/session')->addError($this->__('Wystąpił nieoczekiwany błąd. Spróbuj ponownie lub skontaktuj się z administratorem.'));
             $this->_redirect('customer/account/');
         }
     }

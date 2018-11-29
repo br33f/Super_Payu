@@ -16,12 +16,18 @@ abstract class Super_Payu_Model_Payment_Abstract
     /**
      * @param Mage_Sales_Model_Order $order
      * @return OpenPayU_Result
-     * @throws OpenPayU_Exception
+     * @throws Super_Payu_Model_PayuException
      */
     public function startPayment($order)
     {
-        $result = $this->getOrderRestModel()->create($order);
+        if (Mage::getModel('super_payments/payment')->isPaymentInProgress($order))
+        {
+            $payuException = new Super_Payu_Model_PayuException(Mage::helper('super_payu')->__("Nie można rozpocząć kolejnej płatności, jeśli wcześniejsza jest w trakcie."));
+            $payuException->setRedirectUrl(Mage::helper('super_payments/transaction')->generateListUrl($order->getId()));
+            throw $payuException;
+        }
 
+        $result = $this->getOrderRestModel()->create($order);
         Mage::getModel('super_payments/payment')->addPaymentTransaction($order->getPayment(), $result->getResponse()->orderId);
 
         return $result;
@@ -94,7 +100,7 @@ abstract class Super_Payu_Model_Payment_Abstract
     {
         $isAvailable = parent::isAvailable($quote);
 
-        if (!empty($quote)) {
+        if ($quote) {
             // Order total is in payment method amount range
             $total = $quote->getBaseSubtotal() + $quote->getShippingAddress()->getBaseShippingAmount();
             $lowerLimit = $this->getPaymethodsHelper()->getPriceLowerLimit();

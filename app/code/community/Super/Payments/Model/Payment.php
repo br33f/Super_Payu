@@ -36,7 +36,7 @@ class Super_Payments_Model_Payment
     public function getTransactions($order = null)
     {
         $transactions = Mage::getModel('sales/order_payment_transaction')->getCollection()
-            ->addAttributeToFilter('order_id', array('eq' => $this->getOrder()->getEntityId()))
+            ->addAttributeToFilter('order_id', array('eq' => $this->getOrder($order)->getEntityId()))
             ->addAttributeToFilter('txn_type', array('eq' => 'capture'))
             ->addOrder('created_at', Varien_Data_Collection::SORT_ORDER_DESC);
 
@@ -50,7 +50,7 @@ class Super_Payments_Model_Payment
      */
     public function isOrderPaid($order = null)
     {
-        return $this->getOrder()->getBaseTotalDue() == 0;
+        return $this->getOrder($order)->getBaseTotalDue() == 0;
     }
 
     /**
@@ -63,7 +63,7 @@ class Super_Payments_Model_Payment
         $isPaymentInProgress = false;
 
         /** @var Mage_Sales_Model_Order_Payment_Transaction[] $transactions */
-        $transactions = $this->getTransactions($this->getOrder());
+        $transactions = $this->getTransactions($this->getOrder($order));
         foreach ($transactions as $transaction) {
             $isPaymentInProgress |= !$transaction->getIsClosed();
         }
